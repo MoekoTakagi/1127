@@ -37,7 +37,7 @@ int depth_first_search(int i){
 	int j = 0;
 	if(i >= n && promoted_dragon()){counter++; return 1;}
 	while(j < n){
-		if(!isj[j]){ //j列に竜が置かれていなければ
+		if(!isj[j]){ //j列に飛車が置かれていなければ
 			set_dragon(i, j); //(i, j)に飛車を置く
 			depth_first_search(i+1); //次の行で探索
 			remove_dragon(i, j); //(i, j)の飛車を除く
@@ -62,11 +62,11 @@ bool promoted_dragon(){
 	for(j = 0; j < n; j++){
 		for(i = 0; i < n; i++){
 			k = i*n+j; //添字
-			if(j == 0 && node[k]){ //一番左の列に関して、右上・右下に竜があるか
+			if(j == 0 && node[k]){ //一番左の列に関して、右上・右下に飛車があるか
 				if(node[k-n+1] || node[k+n+1]) return false;
-			}else if(j == n-1 && node[k]){ //一番右の列に関して、左上・左下に竜があるか
+			}else if(j == n-1 && node[k]){ //一番右の列に関して、左上・左下に飛車があるか
 				if(node[k-n-1] || node[k+n-1]) return false;
-			}else if(node[k]){ //それ以外の列に関して、右上・右下・左上・左下に竜があるか
+			}else if(node[k]){ //それ以外の列に関して、右上・右下・左上・左下に飛車があるか
 				if(node[k-n-1] || node[k+n-1] || node[k-n+1] || node[k+n+1]) return false;
 			}
 		}
